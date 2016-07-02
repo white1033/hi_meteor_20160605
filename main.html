@@ -4,13 +4,25 @@
 </head>
 
 <body>
-    {{# each messages}}
-        {{> guestbook}}
-    {{/each}}
+    {{> loginButtons}}
+    {{# if currentUser}}
+        <br>
+        Message: <input type="text" name="message" id="message" value="">
+        {{# each messages}}
+            {{> guestbook}}
+        {{/each}}
+    {{else}}
+        <h1>請先登入</h1>
+    {{/if}}
 </body>
 
 <template name="guestbook">
+    {{# if from}}
+        <h2>{{from}}</h2>
+    {{/if}}
     <h2>{{num}}</h2>
+    <h2>{{username}}</h2>
     <h2>{{text}}</h2>
+    <h2>create at {{createdAt}}</h2>
     <hr>
 </template>
